@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.renthouse.dao.HouseMapper" >
+  <resultMap id="BaseResultMap" type="org.renthouse.pojo.House" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="community" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="province" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="district" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="street" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="room" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="hall" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="toilet" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="square" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="decoration" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="floor" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="top_floor" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_elevator" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="subway_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="property_costs" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="configuration" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="main_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_images" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, community, province, city, district, street, room, hall, toilet, square, 
+    decoration, location, floor, top_floor, house_number, house_type, is_elevator, subway_number, 
+    property_costs, configuration, description, main_image, sub_images, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from house
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from house
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.renthouse.pojo.House" >
+    insert into house (id, user_id, community, 
+      province, city, district, 
+      street, room, hall, 
+      toilet, square, decoration, 
+      location, floor, top_floor, 
+      house_number, house_type, is_elevator, 
+      subway_number, property_costs, configuration, 
+      description, main_image, sub_images, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{community,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{street,jdbcType=VARCHAR}, #{room,jdbcType=INTEGER}, #{hall,jdbcType=INTEGER}, 
+      #{toilet,jdbcType=INTEGER}, #{square,jdbcType=INTEGER}, #{decoration,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{floor,jdbcType=INTEGER}, #{topFloor,jdbcType=INTEGER}, 
+      #{houseNumber,jdbcType=VARCHAR}, #{houseType,jdbcType=VARCHAR}, #{isElevator,jdbcType=INTEGER}, 
+      #{subwayNumber,jdbcType=VARCHAR}, #{propertyCosts,jdbcType=VARCHAR}, #{configuration,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{mainImage,jdbcType=VARCHAR}, #{subImages,jdbcType=VARCHAR},
+            now(), now())
+  </insert>
+  <insert id="insertSelective" parameterType="org.renthouse.pojo.House" >
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="community != null" >
+        community,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="street != null" >
+        street,
+      </if>
+      <if test="room != null" >
+        room,
+      </if>
+      <if test="hall != null" >
+        hall,
+      </if>
+      <if test="toilet != null" >
+        toilet,
+      </if>
+      <if test="square != null" >
+        square,
+      </if>
+      <if test="decoration != null" >
+        decoration,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="topFloor != null" >
+        top_floor,
+      </if>
+      <if test="houseNumber != null" >
+        house_number,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="isElevator != null" >
+        is_elevator,
+      </if>
+      <if test="subwayNumber != null" >
+        subway_number,
+      </if>
+      <if test="propertyCosts != null" >
+        property_costs,
+      </if>
+      <if test="configuration != null" >
+        configuration,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="mainImage != null" >
+        main_image,
+      </if>
+      <if test="subImages != null" >
+        sub_images,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null" >
+        #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null" >
+        #{toilet,jdbcType=INTEGER},
+      </if>
+      <if test="square != null" >
+        #{square,jdbcType=INTEGER},
+      </if>
+      <if test="decoration != null" >
+        #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="topFloor != null" >
+        #{topFloor,jdbcType=INTEGER},
+      </if>
+      <if test="houseNumber != null" >
+        #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isElevator != null" >
+        #{isElevator,jdbcType=INTEGER},
+      </if>
+      <if test="subwayNumber != null" >
+        #{subwayNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCosts != null" >
+        #{propertyCosts,jdbcType=VARCHAR},
+      </if>
+      <if test="configuration != null" >
+        #{configuration,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null" >
+        #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="subImages != null" >
+        #{subImages,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{now(),jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{now(),jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.renthouse.pojo.House" >
+    update house
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        community = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null" >
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null" >
+        hall = #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="toilet != null" >
+        toilet = #{toilet,jdbcType=INTEGER},
+      </if>
+      <if test="square != null" >
+        square = #{square,jdbcType=INTEGER},
+      </if>
+      <if test="decoration != null" >
+        decoration = #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="topFloor != null" >
+        top_floor = #{topFloor,jdbcType=INTEGER},
+      </if>
+      <if test="houseNumber != null" >
+        house_number = #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isElevator != null" >
+        is_elevator = #{isElevator,jdbcType=INTEGER},
+      </if>
+      <if test="subwayNumber != null" >
+        subway_number = #{subwayNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCosts != null" >
+        property_costs = #{propertyCosts,jdbcType=VARCHAR},
+      </if>
+      <if test="configuration != null" >
+        configuration = #{configuration,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null" >
+        main_image = #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="subImages != null" >
+        sub_images = #{subImages,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.renthouse.pojo.House" >
+    update house
+    set user_id = #{userId,jdbcType=INTEGER},
+      community = #{community,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      room = #{room,jdbcType=INTEGER},
+      hall = #{hall,jdbcType=INTEGER},
+      toilet = #{toilet,jdbcType=INTEGER},
+      square = #{square,jdbcType=INTEGER},
+      decoration = #{decoration,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=INTEGER},
+      top_floor = #{topFloor,jdbcType=INTEGER},
+      house_number = #{houseNumber,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      is_elevator = #{isElevator,jdbcType=INTEGER},
+      subway_number = #{subwayNumber,jdbcType=VARCHAR},
+      property_costs = #{propertyCosts,jdbcType=VARCHAR},
+      configuration = #{configuration,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      main_image = #{mainImage,jdbcType=VARCHAR},
+      sub_images = #{subImages,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="list" resultType="java.util.Map">
+    SELECT h.id houseId,
+    h.user_id userId,
+    h.community,
+    h.city,
+    h.district,
+    h.street,
+    h.room,
+    h.hall,
+    h.square,
+    h.location,
+    h.floor,
+    h.top_floor topFloor,
+    h.subway_number subwayNumber,
+    p.id publishId,
+    p.title,
+    p.rent,
+    p.rent_way rentWay
+    FROM house as h
+    INNER JOIN publish as p
+    on h.id = p.house_id
+  </select>
+
+
+
+  <select id="search" resultType="java.util.Map" parameterType="map">
+    SELECT h.id houseId,
+    h.user_id userId,
+    h.community,
+    h.city,
+    h.district,
+    h.street,
+    h.room,
+    h.hall,
+    h.square,
+    h.location,
+    h.floor,
+    h.top_floor topFloor,
+    h.subway_number subwayNumber,
+    p.id publishId,
+    p.title,
+    p.rent,
+    p.rent_way rentWay
+    FROM house as h
+    INNER JOIN publish as p
+    on h.id = p.house_id
+    WHERE 1 = 1
+    <if test="keyword != null">
+      and h.community like #{keyword}
+    </if>
+    <if test="district != null">
+      and h.district = #{district}
+    </if>
+    <if test="lowerRent != null">
+      and p.rent  &gt;= #{lowerRent}
+    </if>
+    <if test="upperRent != null">
+      and p.rent  &lt;= #{upperRent}
+    </if>
+    <if test="room != null">
+      and h.room = #{room}
+    </if>
+    <if test="way != null">
+      and p.rent_way = #{way}
+    </if>
+    <if test="type != null">
+      and h.house_type = #{type}
+    </if>
+    <if test="location != null">
+      and h.location = #{location}
+    </if>
+    <if test="elevator != null">
+      and h.elevator = #{elevator}
+    </if>
+    <if test="subway != null">
+      and h.subway = #{subway}
+    </if>
+  </select>
+
+
+  <select id="selectHouseHotOrRandomList" parameterType="map" resultType="org.renthouse.vo.HouseRecommendListVo">
+    SELECT
+    h.city,
+    h.community,
+    h.decoration,
+    h.hall,
+    h.id houseId,
+    p.id publishId,
+    p.rent,
+    h.room,
+    p.title
+    FROM house as h
+    INNER JOIN publish as p
+    on h.id = p.house_id
+    <if test="condition != null">
+      <if test = 'condition == "visit"'>
+        ORDER BY p.${condition} DESC
+      </if>
+    </if>
+    <if test="condition != null">
+      <if test = 'condition == "rand()"'>
+        ORDER BY ${condition}
+      </if>
+    </if>
+    <if test="number != null">
+      LIMIT ${number}
+    </if>
+  </select>
+</mapper>

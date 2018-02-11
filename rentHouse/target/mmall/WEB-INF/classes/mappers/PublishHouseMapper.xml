@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.renthouse.dao.PublishHouseMapper" >
+  <resultMap id="BaseResultMap" type="org.renthouse.pojo.PublishHouse" >
+    <constructor >
+      <idArg column="publish_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="owner_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rent_money" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="cash_pledge" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="publish_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="way" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rent_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    publish_id, house_id, owner_id, title, rent_money, cash_pledge, description, create_time, 
+    update_time, publish_time, way, rent_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from publish_house
+    where publish_id = #{publishId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from publish_house
+    where publish_id = #{publishId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.renthouse.pojo.PublishHouse" >
+    insert into publish_house (publish_id, house_id, owner_id, 
+      title, rent_money, cash_pledge, 
+      description, create_time, update_time, 
+      publish_time, way, rent_time, 
+      state)
+    values (#{publishId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{rentMoney,jdbcType=DECIMAL}, #{cashPledge,jdbcType=DECIMAL}, 
+      #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{way,jdbcType=VARCHAR}, #{rentTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.renthouse.pojo.PublishHouse" >
+    insert into publish_house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="publishId != null" >
+        publish_id,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="rentMoney != null" >
+        rent_money,
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="way != null" >
+        way,
+      </if>
+      <if test="rentTime != null" >
+        rent_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="publishId != null" >
+        #{publishId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMoney != null" >
+        #{rentMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null" >
+        #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="way != null" >
+        #{way,jdbcType=VARCHAR},
+      </if>
+      <if test="rentTime != null" >
+        #{rentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.renthouse.pojo.PublishHouse" >
+    update publish_house
+    <set >
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMoney != null" >
+        rent_money = #{rentMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="way != null" >
+        way = #{way,jdbcType=VARCHAR},
+      </if>
+      <if test="rentTime != null" >
+        rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where publish_id = #{publishId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.renthouse.pojo.PublishHouse" >
+    update publish_house
+    set house_id = #{houseId,jdbcType=INTEGER},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      rent_money = #{rentMoney,jdbcType=DECIMAL},
+      cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      way = #{way,jdbcType=VARCHAR},
+      rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where publish_id = #{publishId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectListAll" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    from publish_house
+    ORDER BY publish_id asc
+  </select>
+
+
+  <select id="selectListByOwnerId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM  publish_house
+    WHERE owner_id = #{ownerId,jdbcType=INTEGER}
+    ORDER BY publish_id asc
+  </select>
+
+  <select id="search" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM publish_house
+    WHERE title = #{keyword,jdbcType=VARCHAR}
+    ORDER BY publish_id ASC
+  </select>
+</mapper>

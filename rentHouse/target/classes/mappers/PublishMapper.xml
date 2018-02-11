@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.renthouse.dao.PublishMapper" >
+  <resultMap id="BaseResultMap" type="org.renthouse.pojo.Publish" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="deposit_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rent" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="cash_pledge" jdbcType="DECIMAL" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="publish_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="rent_way" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rent_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="visit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, house_id, user_id, title, pay_number, deposit_number, rent, cash_pledge, create_time, 
+    update_time, publish_time, rent_way, rent_time, status, visit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from publish
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from publish
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.renthouse.pojo.Publish" >
+    insert into publish (id, house_id, user_id, 
+      title, pay_number, deposit_number, 
+      rent, cash_pledge, create_time, 
+      update_time, publish_time, rent_way, 
+      rent_time, status, visit
+      )
+    values (#{id,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{payNumber,jdbcType=INTEGER}, #{depositNumber,jdbcType=INTEGER}, 
+      #{rent,jdbcType=DECIMAL}, #{cashPledge,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}, #{rentWay,jdbcType=VARCHAR}, 
+      #{rentTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{visit,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.renthouse.pojo.Publish" >
+    insert into publish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="payNumber != null" >
+        pay_number,
+      </if>
+      <if test="depositNumber != null" >
+        deposit_number,
+      </if>
+      <if test="rent != null" >
+        rent,
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="rentWay != null" >
+        rent_way,
+      </if>
+      <if test="rentTime != null" >
+        rent_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="payNumber != null" >
+        #{payNumber,jdbcType=INTEGER},
+      </if>
+      <if test="depositNumber != null" >
+        #{depositNumber,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null" >
+        #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentWay != null" >
+        #{rentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="rentTime != null" >
+        #{rentTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.renthouse.pojo.Publish" >
+    update publish
+    <set >
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="payNumber != null" >
+        pay_number = #{payNumber,jdbcType=INTEGER},
+      </if>
+      <if test="depositNumber != null" >
+        deposit_number = #{depositNumber,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="cashPledge != null" >
+        cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentWay != null" >
+        rent_way = #{rentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="rentTime != null" >
+        rent_time = #{rentTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.renthouse.pojo.Publish" >
+    update publish
+    set house_id = #{houseId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      pay_number = #{payNumber,jdbcType=INTEGER},
+      deposit_number = #{depositNumber,jdbcType=INTEGER},
+      rent = #{rent,jdbcType=DECIMAL},
+      cash_pledge = #{cashPledge,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      rent_way = #{rentWay,jdbcType=VARCHAR},
+      rent_time = #{rentTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      visit = #{visit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

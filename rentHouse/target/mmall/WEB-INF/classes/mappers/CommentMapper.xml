@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.renthouse.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="org.renthouse.pojo.Comment" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="publish_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="to_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="authenticity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="environment" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="service" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, publish_id, to_user_id, content, authenticity, environment, service, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.renthouse.pojo.Comment" >
+    insert into comment (id, publish_id, to_user_id, 
+      content, authenticity, environment, 
+      service, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{publishId,jdbcType=INTEGER}, #{toUserId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{authenticity,jdbcType=INTEGER}, #{environment,jdbcType=INTEGER}, 
+      #{service,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.renthouse.pojo.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="publishId != null" >
+        publish_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="authenticity != null" >
+        authenticity,
+      </if>
+      <if test="environment != null" >
+        environment,
+      </if>
+      <if test="service != null" >
+        service,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="publishId != null" >
+        #{publishId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null" >
+        #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="environment != null" >
+        #{environment,jdbcType=INTEGER},
+      </if>
+      <if test="service != null" >
+        #{service,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.renthouse.pojo.Comment" >
+    update comment
+    <set >
+      <if test="publishId != null" >
+        publish_id = #{publishId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        to_user_id = #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null" >
+        authenticity = #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="environment != null" >
+        environment = #{environment,jdbcType=INTEGER},
+      </if>
+      <if test="service != null" >
+        service = #{service,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.renthouse.pojo.Comment" >
+    update comment
+    set publish_id = #{publishId,jdbcType=INTEGER},
+      to_user_id = #{toUserId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      authenticity = #{authenticity,jdbcType=INTEGER},
+      environment = #{environment,jdbcType=INTEGER},
+      service = #{service,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
